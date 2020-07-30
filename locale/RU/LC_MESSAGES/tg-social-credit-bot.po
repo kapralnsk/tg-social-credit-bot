@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: src/bot.py:105
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: 2020-07-30 19:06+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: ALEKSANDR KAURDAKOV <kapralnsk@gmail.com>\n"
+"Language: RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/bot.py:21 src/bot.py:64 src/bot.py:80 src/bot.py:92
+msgid "Chat is not registered in Social Credit system"
+msgstr "Чат не зарегистрирован в Системе Социального Рейтинга"
+
+#: src/bot.py:24
+msgid "Ranking your own messages is not allowed"
+msgstr "Оценка своих сообщений запрещена"
+
+#: src/bot.py:26
+msgid "Profile is not enrolled in Social Credit system"
+msgstr "Профиль не включен в Систему Социального Рейтинга"
+
+#: src/bot.py:29
+msgid "Your profile is not enrolled in Social Credit system"
+msgstr "Ваш профиль не включен в Систему Социального Рейтинга"
+
+#: src/bot.py:32
+msgid "You have already ranked this message"
+msgstr "Вы уже оценили это сообщение"
+
+#: src/bot.py:48
+msgid "Chat is already registered in Social Credit system"
+msgstr "Чат уже зарегистрирован в Системе Социального Рейтинга"
+
+#: src/bot.py:53
+msgid "You need to be a Chat Admin to register chat in Social Credit system"
+msgstr "Для регистрации чата в Системе Социального Рейтинга, необходимо быть администратором чата"
+
+#: src/bot.py:56
+msgid "Chat is sucessfully registered in Social Credit system"
+msgstr "Чат успешно зарегистрирован в Системе Социального Рейтинга"
+
+#: src/bot.py:67
+msgid "You are already enrolled in Social Credit system"
+msgstr "Вы уже включены в Систему Социального Рейтинга"
+
+#: src/bot.py:72
+msgid "You have successfully enrolled in Social Credit system"
+msgstr "Вы успешно включены в Систему Социального Рейтинга"
+
+#: src/bot.py:84
+msgid "You are not enrolled in Social Credit system"
+msgstr "Вы не включены в Систему Социального Рейтинга"
+
+#: src/bot.py:86
+#, python-brace-format
+msgid "Your Social Credit score is {score}"
+msgstr "Ваш социальный Рейтинг: {score}"
+
+#: src/bot.py:101
+#, python-brace-format
+msgid ""
+"Current Social Credit scores are:\n"
+"{profile_infos}"
+msgstr "Текущий социальный Рейтинг чата:\n"
+"{profile_infos}"
+
+#: src/bot.py:103
+#, python-brace-format
+msgid ""
+"I am a control bot of Social Credit Score system for Telegram group chats.\n"
+"Social Credit Score is manipulated via replies to rankable messages, using "
+"this sticker set: https://t.me/addstickers/PoohSocialCredit.\n"
+"Before use, Social Credit System must be enabled for your chat by a Chat "
+"Admin, using /social_credit_enable command.\n"
+"Then, chat members can enroll to Social Credit System using /"
+"social_credit_enroll command.\n"
+"After enrolling, each member has a {start_score} Starting Credit Score.\n"
+"/social_credit_myscore shows your current Social Credit score, while /"
+"social_credit_chatinfo command show score info on everyone enrolled into "
+"system in this chat.\n"
+"/social_credit_help displays this message again."
+msgstr ""
+"Я - контролирующий бот Системы Социального Рейтинга для групповых чатов Telegram.\n"
+"Социальный Рейтинг может меняться через ответы стикером к сообщениям, из набора https://t.me/addstickers/PoohSocialCredit.\n"
+"Для использования Системы Социального Рейтинга, она должна быть включена для вашего чата Администратором с помощью команды /social_credit_enable.\n"
+"Затем, участники чата могут включиться в Систему Социального Рейтинга с помощью команды /social_credit_enroll.\n"
+"При включении в Систему Социального рейтинга, каждому участнику начисляется {start_score} Социального Рейтинга.\n"
+"Команда /social_credit_myscore показывает ваш текущий Социальный Рейтинг, а команда /social_credit_chatinfo показывает Социальный Рейтинг всех участников чата, включенных в Систему Социального Рейтинга.\n"
+"/social_credit_help снова покажет это сообщение."
+
+
+#: src/transactions.py:6
+#, python-brace-format
+msgid "Good! {username} Social Credit Score is now {score}"
+msgstr "Так держать! Социальный Рейтинг {username} теперь {score}"
+
+#: src/transactions.py:7
+#, python-brace-format
+msgid "Public shame! {username} Social Credit Score is now {score}"
+msgstr "Позор! Социальный Рейтинг {username} теперь {score}"

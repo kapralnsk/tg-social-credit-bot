@@ -1,0 +1,102 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: src/bot.py:105
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-07-30 19:14+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/bot.py:19 src/bot.py:65 src/bot.py:87 src/bot.py:99
+msgid "Chat is not registered in Social Credit system"
+msgstr ""
+
+#: src/bot.py:24
+msgid "Ranking your own messages is not allowed"
+msgstr ""
+
+#: src/bot.py:27
+msgid "Profile is not enrolled in Social Credit system"
+msgstr ""
+
+#: src/bot.py:30
+msgid "Your profile is not enrolled in Social Credit system"
+msgstr ""
+
+#: src/bot.py:33
+msgid "You have already ranked this message"
+msgstr ""
+
+#: src/bot.py:49
+msgid "Chat is already registered in Social Credit system"
+msgstr ""
+
+#: src/bot.py:54
+msgid "You need to be a Chat Admin to register chat in Social Credit system"
+msgstr ""
+
+#: src/bot.py:57
+msgid "Chat is sucessfully registered in Social Credit system"
+msgstr ""
+
+#: src/bot.py:68
+msgid "You are already enrolled in Social Credit system"
+msgstr ""
+
+#: src/bot.py:79
+msgid "You have successfully enrolled in Social Credit system"
+msgstr ""
+
+#: src/bot.py:91
+msgid "You are not enrolled in Social Credit system"
+msgstr ""
+
+#: src/bot.py:93
+#, python-brace-format
+msgid "Your Social Credit score is {score}"
+msgstr ""
+
+#: src/bot.py:108
+#, python-brace-format
+msgid ""
+"Current Social Credit scores are:\n"
+"{profile_infos}"
+msgstr ""
+
+#: src/bot.py:112
+#, python-brace-format
+msgid ""
+"I am a control bot of Social Credit Score system for Telegram group chats.\n"
+"Social Credit Score is manipulated via replies to rankable messages, using "
+"this sticker set: https://t.me/addstickers/PoohSocialCredit.\n"
+"Before use, Social Credit System must be enabled for your chat by a Chat "
+"Admin, using /social_credit_enable command.\n"
+"Then, chat members can enroll to Social Credit System using /"
+"social_credit_enroll command.\n"
+"After enrolling, each member has a {start_score} Starting Credit Score.\n"
+"/social_credit_myscore shows your current Social Credit score, while /"
+"social_credit_chatinfo command show score info on everyone enrolled into "
+"system in this chat.\n"
+"/social_credit_help displays this message again."
+msgstr ""
+
+#: src/transactions.py:6
+#, python-brace-format
+msgid "Good! {username} Social Credit Score is now {score}"
+msgstr ""
+
+#: src/transactions.py:7
+#, python-brace-format
+msgid "Public shame! {username} Social Credit Score is now {score}"
+msgstr ""

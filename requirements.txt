@@ -1,0 +1,4 @@
+pymongo==3.10.1
+pyTelegramBotAPI==3.7.2
+mongoengine==0.20.0
+environs==8.0.0

@@ -1,0 +1,10 @@
+from environs import Env
+
+
+env = Env()
+
+TELEBOT_TOKEN = env('TELEBOT_TOKEN')
+MONGO_CONNECTION_STRING = env('MONGO_CONNECTION_STRING', '')
+DEFAULT_SCORE = env.int('DEFAULT_SCORE', 200)
+DEFAULT_ISSUER = env('DEFAULT_ISSUER', 'chat_social_credit_bot')
+SOCIAL_CREDIT_STICKERPACK_NAME = env('SOCIAL_CREDIT_STICKERPACK_NAME', 'PoohSocialCredit')
