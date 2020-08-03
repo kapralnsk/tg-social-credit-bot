@@ -4,9 +4,11 @@ from mongoengine import Document, StringField, ReferenceField, IntField, Boolean
 class Chat(Document):
     tg_chat_id = IntField(required=True, primary_key=True)
 
-    @property
-    def profiles(self):
-        return ChatUserProfile.objects(chat=self)
+    def get_profiles(self, order_by=None):
+        profiles = ChatUserProfile.objects(chat=self)
+        if order_by:
+            profiles.order_by(*order_by)
+        return profiles
 
 class ChatUserProfile(Document):
     chat = ReferenceField(Chat, required=True)
@@ -17,6 +19,8 @@ class ChatUserProfile(Document):
     current_score = IntField(required=True, default=0)
 
     def change_score(self, score_delta, issuer, message):
+        # everything here should be one transaction,
+        # however MongoEngine doesn't allow that for now
         self.current_score = self.current_score + score_delta
         transaction = ProfileTransaction(
             chat_user_profile=self,

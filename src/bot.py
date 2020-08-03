@@ -98,7 +98,7 @@ def get_chat_info(message):
     if not chat:
         bot.reply_to(message, _('Chat is not registered in Social Credit system'))
         return
-    profiles = chat.profiles
+    profiles = chat.get_profiles(order_by=tuple('-current_score'))
     profile_infos = []
     for profile in profiles:
         profile_infos.append(
@@ -116,4 +116,3 @@ Then, chat members can enroll to Social Credit System using /social_credit_enrol
 After enrolling, each member has a {start_score} Starting Credit Score.
 /social_credit_myscore shows your current Social Credit score, while /social_credit_chatinfo command show score info on everyone enrolled into system in this chat.
 /social_credit_help displays this message again.''').format(start_score=DEFAULT_SCORE))
-    
