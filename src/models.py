@@ -19,7 +19,6 @@ class ChatUserProfile(Document):
     def change_score(self, score_delta, issuer, message):
         # everything here should be one transaction,
         # however MongoEngine doesn't allow that for now
-        self.current_score = self.current_score + score_delta
         transaction = ProfileTransaction(
             chat_user_profile=self,
             score_delta=score_delta,
@@ -27,7 +26,7 @@ class ChatUserProfile(Document):
             message=message,
         )
         transaction.save()
-        self.save()
+        self.modify(inc__current_score=score_delta)
 
     @property
     def profile_transactions(self):
