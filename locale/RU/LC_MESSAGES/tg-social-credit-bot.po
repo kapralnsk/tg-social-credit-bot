@@ -1,7 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Russian translation of Telegram Social Cedit bot messages.
+# Copyright (C) 2020
+# This file is distributed under the same license as the tg-social-credit-bot package.
+# ALEKSANDR KAURDAKOV <kapralnsk@gmail.com>, 2020.
 #
 #: src/bot.py:105
 #, fuzzy
@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "POT-Creation-Date: 2020-07-30 19:06+0700\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2020-08-03 19:06+0700\n"
 "Last-Translator: ALEKSANDR KAURDAKOV <kapralnsk@gmail.com>\n"
 "Language: RU\n"
 "MIME-Version: 1.0\n"
@@ -63,14 +63,14 @@ msgstr "Вы не включены в Систему Социального Ре
 #: src/bot.py:86
 #, python-brace-format
 msgid "Your Social Credit score is {score}"
-msgstr "Ваш социальный Рейтинг: {score}"
+msgstr "Ваш Социальный Рейтинг: {score}"
 
 #: src/bot.py:101
 #, python-brace-format
 msgid ""
 "Current Social Credit scores are:\n"
 "{profile_infos}"
-msgstr "Текущий социальный Рейтинг чата:\n"
+msgstr "Текущий Социальный Рейтинг чата:\n"
 "{profile_infos}"
 
 #: src/bot.py:103
