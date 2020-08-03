@@ -4,10 +4,8 @@ from mongoengine import Document, StringField, ReferenceField, IntField, Boolean
 class Chat(Document):
     tg_chat_id = IntField(required=True, primary_key=True)
 
-    def get_profiles(self, order_by=None):
-        profiles = ChatUserProfile.objects(chat=self)
-        if order_by:
-            profiles.order_by(*order_by)
+    def get_profiles(self, order_by=tuple()):
+        profiles = ChatUserProfile.objects(chat=self).order_by(*order_by)
         return profiles
 
 class ChatUserProfile(Document):

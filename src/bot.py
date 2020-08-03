@@ -98,7 +98,7 @@ def get_chat_info(message):
     if not chat:
         bot.reply_to(message, _('Chat is not registered in Social Credit system'))
         return
-    profiles = chat.get_profiles(order_by=tuple('-current_score'))
+    profiles = chat.get_profiles(order_by=('-current_score',))
     profile_infos = []
     for profile in profiles:
         profile_infos.append(
