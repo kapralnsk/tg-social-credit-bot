@@ -74,7 +74,7 @@ msgid ""
 "{profile_infos}"
 msgstr ""
 
-#: src/bot.py:112
+#: src/bot.py:116
 #, python-brace-format
 msgid ""
 "I am a control bot of Social Credit Score system for Telegram group chats.\n"
@@ -84,11 +84,56 @@ msgid ""
 "Admin, using /social_credit_enable command.\n"
 "Then, chat members can enroll to Social Credit System using /"
 "social_credit_enroll command.\n"
-"After enrolling, each member has a {start_score} Starting Credit Score.\n"
+"After enrolling, each member has a {start_score} Starting Credit Score (This "
+"can be changed by an admin).\n"
 "/social_credit_myscore shows your current Social Credit score, while /"
 "social_credit_chatinfo command show score info on everyone enrolled into "
 "system in this chat.\n"
+"Admins can get help on admin commands using /social_credit_admin_help.\n"
 "/social_credit_help displays this message again."
+msgstr ""
+
+#: src/bot.py:134
+msgid "You need to be a Chat Admin to get Admin help"
+msgstr ""
+
+#: src/bot.py:136
+#, python-brace-format
+msgid ""
+"Admin can use following commands:\n"
+"    * /social_credit_enable - enables Social Credit System for this chat\n"
+"    * /social_credit_set_chat_option - set a value for a chat option. Takes "
+"2 params: option_name and option value, separated by spaces. Example: `/"
+"social_credit_set_chat_option starting_score 300`\n"
+"    \n"
+"Avaliable chat options:\n"
+"    * starting_score - starting score for anyone, who enrolls to Social "
+"Credit System. Default is {start_score}\n"
+"    * verbosity - bot verbosity level. Can be 0 - answer only to commands, 1 "
+"- allow periodical messages (unused for now), 2 - allow bot reactions. Default is {verbosity}"
+msgstr ""
+
+#: src/bot.py:156
+msgid "You need to be a Chat Admin to set chat options"
+msgstr ""
+
+#: src/bot.py:160
+msgid "Invalid command parameters. Use /social_credit_admin_help for details."
+msgstr ""
+
+#: src/bot.py:167
+#, python-brace-format
+msgid "Invalid value for option {option}: {error_message}"
+msgstr ""
+
+#: src/bot.py:173
+#, python-brace-format
+msgid "Unknown option {option}"
+msgstr ""
+
+#: src/bot.py:175
+#, python-brace-format
+msgid "Option {option} set to {value}"
 msgstr ""
 
 #: src/transactions.py:6
