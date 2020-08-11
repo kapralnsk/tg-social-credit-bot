@@ -17,8 +17,9 @@ def handle(message, method_name, allow_no_chat=False):
         method()
     except SocialCreditError as e:
         handler.send_system(str(e))
-    # except Exception as e:
-    #     bot.reply_to(message, "I've done goofed")
+    except Exception as e:
+        # TODO add proper logging, and log en error here
+        bot.reply_to(message, "I've done goofed")
 
 
 @bot.message_handler(content_types=['sticker'], func=change_score_validator)
