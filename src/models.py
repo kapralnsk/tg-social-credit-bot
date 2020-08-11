@@ -1,7 +1,7 @@
 import mongoengine
 
 import model_validators
-from settings import DEFAULT_SCORE
+from settings import DEFAULT_SCORE, DEFAULT_VERBOSITY, DEFAULT_LANGUAGE
 
 CHAT_VERBOSITIES = (
     (0, 'Commands only'),
@@ -21,16 +21,17 @@ class Chat(mongoengine.Document):
     verbosity = mongoengine.IntField(
         required=True,
         choices=CHAT_VERBOSITIES,
-        default=CHAT_VERBOSITIES[0][0],
+        default=DEFAULT_VERBOSITY,
     )
+    language = mongoengine.StringField(required=True, default=DEFAULT_LANGUAGE)
 
     def clean(self):
         # Choices validation happens before type casting (.to_mongo() call),
         # so we're manually casting it here, before validation.
         # Cool shit MongoEngine.
-        if type(self.starting_score) == str:
+        if type(self.verbosity) == str:
             try:
-                self.starting_score = int(self.starting_score)
+                self.verbosity = int(self.verbosity)
             except ValueError:
                 pass # let MongoEngine logic handle this error
 

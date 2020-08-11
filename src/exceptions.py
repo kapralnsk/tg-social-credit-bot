@@ -1,0 +1,2 @@
+class SocialCreditError(Exception):
+    pass

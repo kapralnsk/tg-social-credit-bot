@@ -110,7 +110,8 @@ msgid ""
 "    * starting_score - starting score for anyone, who enrolls to Social "
 "Credit System. Default is {start_score}\n"
 "    * verbosity - bot verbosity level. Can be 0 - answer only to commands, 1 "
-"- allow periodical messages (unused for now), 2 - allow bot reactions. Default is {verbosity}"
+"- allow periodical messages (unused for now), 2 - allow bot reactions. Default is {verbosity}\n"
+"    * language - bot messages language. Available languages are {languages}. Default is `{language}`, however this can fallback to `en`"
 msgstr ""
 
 #: src/bot.py:156
