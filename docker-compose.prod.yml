@@ -11,7 +11,7 @@ services:
     depends_on:
       - db
     env_file: .env
-    command: "yacron -c crontab.yaml"
+    entrypoint: "yacron -c crontab.yaml"
 
   db:
     image: "mongo:4"
