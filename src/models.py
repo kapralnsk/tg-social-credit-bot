@@ -1,3 +1,5 @@
+import datetime
+
 import mongoengine
 
 import model_validators
@@ -8,6 +10,12 @@ CHAT_VERBOSITIES = (
     (1, 'Periodical messages'),
     (2, 'Reactions'),
 )
+
+class PluginOptions(mongoengine.EmbeddedDocument):
+    plugin_name = mongoengine.StringField(unique=True)
+
+    meta = {'allow_inheritance': True}
+
 class Chat(mongoengine.Document):
     PROTECTED_OPTIONS = ['tg_chat_id']
     CHAT_VERBOSITIES = CHAT_VERBOSITIES
@@ -24,6 +32,7 @@ class Chat(mongoengine.Document):
         default=DEFAULT_VERBOSITY,
     )
     language = mongoengine.StringField(required=True, default=DEFAULT_LANGUAGE)
+    plugin_options = mongoengine.EmbeddedDocumentListField(PluginOptions)
 
     def clean(self):
         # Choices validation happens before type casting (.to_mongo() call),
@@ -55,9 +64,10 @@ class ChatUserProfile(mongoengine.Document):
     tg_first_name = mongoengine.StringField()
     tg_last_name = mongoengine.StringField()
     current_score = mongoengine.IntField(required=True, default=0)
+    plugin_options = mongoengine.EmbeddedDocumentListField(PluginOptions)
 
     def change_score(self, score_delta, issuer, message):
-        # everything here should be one transaction,
+        # everything here should be one DB transaction,
         # however MongoEngine doesn't allow that for now
         transaction = ProfileTransaction(
             chat_user_profile=self,
@@ -81,4 +91,19 @@ class ProfileTransaction(mongoengine.Document):
     score_delta = mongoengine.IntField(required=True)
     issuer = mongoengine.ReferenceField(ChatUserProfile, required=True)
     message = mongoengine.DictField()
-    date = mongoengine.IntField()
+
+class ChatPeriodicTask(mongoengine.Document):
+    DEFAULT_DATE = datetime.date(year=1970, month=1, day=1)
+
+    chat = mongoengine.ReferenceField(Chat, required=True)
+    plugin_name = mongoengine.StringField()
+    module = mongoengine.StringField(required=True, unique_with=('chat', 'plugin_name'))
+    time = mongoengine.DateTimeField(required=True)
+
+    def clean(self):
+        self.time = datetime.datetime.combine(self.DEFAULT_DATE, self.time)
+
+    @mongoengine.queryset_manager
+    def get_scheduled(doc_cls, queryset, time):
+        dt = datetime.datetime.combine(doc_cls.DEFAULT_DATE, time)       
+        return queryset.filter(time=dt)

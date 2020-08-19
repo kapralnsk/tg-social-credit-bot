@@ -6,6 +6,13 @@ services:
       - db
     env_file: .env
 
+  periodic:
+    image: "kapral/tg-social-credit-bot:stable"
+    depends_on:
+      - db
+    env_file: .env
+    command: "yacron -c crontab.yaml"
+
   db:
     image: "mongo:4"
     volumes:

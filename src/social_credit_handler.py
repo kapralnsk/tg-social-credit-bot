@@ -1,4 +1,5 @@
 from collections import namedtuple
+from importlib import import_module
 
 import mongoengine
 
@@ -7,6 +8,7 @@ import message_validators
 from base_handler import BaseHandler
 from settings import DEFAULT_ISSUER, DEFAULT_SCORE, DEFAULT_VERBOSITY, DEFAULT_LANGUAGE
 from models import Chat, ChatUserProfile, ProfileTransaction
+from utils import get_plugin_list
 
 
 Transaction = namedtuple('Transaction', 'amount message_template')
@@ -71,8 +73,8 @@ class SocialCreditHandler(BaseHandler):
             'Your Social Credit score is {score}',
             str_format={'score': profile.current_score},
         )
-
-    def get_chat_info(self):
+    
+    def get_profile_infos(self):
         profiles = self.chat.get_profiles(order_by=('-current_score',))
         profile_infos = []
         for profile in profiles:
@@ -80,6 +82,10 @@ class SocialCreditHandler(BaseHandler):
                 f'@{profile.tg_username}: {profile.current_score}' if profile.tg_username
                 else f'{profile.tg_full_name}: {profile.current_score}'
             )
+        return profile_infos
+
+    def get_chat_info(self):
+        profile_infos = self.get_profile_infos()
         self.send_system(
             'Current Social Credit scores are:\n{profile_infos}',
             str_format={'profile_infos': '\n'.join(profile_infos)},
@@ -106,17 +112,23 @@ Admins can get help on admin commands using /social_credit_admin_help.
             '''Admin can use following commands:
     * /social_credit_enable - enables Social Credit System for this chat
     * /social_credit_set_chat_option - set a value for a chat option. Takes 2 params: option_name and option value, separated by spaces. Example: `/social_credit_set_chat_option starting_score 300`
-    
+
 Avaliable chat options:
     * starting_score - starting score for anyone, who enrolls to Social Credit System. Default is {start_score}
-    * verbosity - bot verbosity level. Can be 0 - answer only to commands, 1 - allow periodical messages (unused for now), 2 - allow bot reactions. Default is {verbosity}
-    * language - bot messages language. Available languages are {languages}. Default is `{language}`, however this can fallback to `en`''',
+    * verbosity - bot verbosity level. Can be 0 - answer only to commands, 1 - allow periodical messages, 2 - allow bot reactions. Default is {verbosity}
+    * language - bot messages language. Available languages are {languages}. Default is `{language}`, however this can fallback to `en`
+
+For plugins, following management commands are available:
+    * /social_credit_plugins - show list of available plugins.
+    * /social_credit_enable_plugin - enables plugin. Takes 1 parameter `plugin_name`.
+    * /social_credit_disable_plugin - disables plugin. Takes 1 parameter `plugin_name`.
+    * /social_credit_plugin_help - shows help text for plugin. Takes 1 parameter `plugin_name`.''',
             str_format={'start_score': DEFAULT_SCORE, 'verbosity': DEFAULT_VERBOSITY, 'language': DEFAULT_LANGUAGE, 'languages': languages}
         )
 
     @BaseHandler.run_validators([
         message_validators.validate_user_is_admin,
-        message_validators.validate_chat_option,
+        message_validators.validate_two_params,
     ])
     def set_chat_option(self):
         option, value = self.message.text.split(' ')[1:]
@@ -137,4 +149,73 @@ Avaliable chat options:
         self.send_system(
             'Option {option} set to {value}',
             str_format={'option': option, 'value': value}
+        )
+
+    @BaseHandler.run_validators([message_validators.validate_user_is_admin])
+    def get_plugins(self):
+        plugins = map(lambda plugin: f'* {plugin}', get_plugin_list())
+        self.send_system(
+            'Available plugins: \n{plugins}',
+            str_format={'plugins': '\n'.join(plugins)}
+        )
+    
+    @BaseHandler.run_validators([
+        message_validators.validate_user_is_admin,
+        message_validators.validate_one_param,
+        message_validators.validate_plugin_exists,
+    ])
+    def enable_plugin(self):
+        plugin = self.message.text.split(' ')[1]
+        import_module(f'plugins.{plugin}').enable(self.chat)
+        self.send_system(
+            'Plugin {plugin} is enabled.',
+            str_format={'plugin': plugin},
+        )
+
+    @BaseHandler.run_validators([
+        message_validators.validate_user_is_admin,
+        message_validators.validate_one_param,
+        message_validators.validate_plugin_exists,
+    ])
+    def disable_plugin(self):
+        plugin = self.message.text.split(' ')[1]
+        import_module(f'plugins.{plugin}').disable(self.chat)
+        self.send_system(
+            'Plugin {plugin} is disabled.',
+            str_format={'plugin': plugin},
+        )
+
+    @BaseHandler.run_validators([
+        message_validators.validate_user_is_admin,
+        message_validators.validate_three_params,
+        message_validators.validate_plugin_exists,
+    ])
+    def set_plugin_option(self):
+        plugin, option, value = self.message.text.split(' ')[1:]
+        try:
+            setattr(self.chat.plugin_options.get(plugin_name=plugin), option, value)
+            self.chat.plugin_options.save()
+        except mongoengine.DoesNotExist:
+            # TODO looks like this is never raised for EmbeddedDocuments,
+            # need to investigate and somehow implement manual check
+            raise exceptions.SocialCreditError('Invalid option')
+        except mongoengine.ValidationError as e:
+            error_message = e._format_errors().split(':')[0]
+            raise exceptions.SocialCreditError(error_message)
+        self.send_system(
+            '{plugin} plugin option {option} is set to {value}',
+            str_format={'plugin': plugin, 'option': option, 'value': value},
+        )
+    
+    @BaseHandler.run_validators([
+        message_validators.validate_user_is_admin,
+        message_validators.validate_one_param,
+        message_validators.validate_plugin_exists,
+    ])
+    def get_plugin_help(self):
+        plugin = self.message.text.split(' ')[1]
+        text, str_format = import_module(f'plugins.{plugin}').get_help()
+        self.send_system(
+            text,
+            str_format=str_format,
         )

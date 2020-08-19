@@ -1,5 +1,6 @@
 import exceptions
 from models import ChatUserProfile, ProfileTransaction
+from utils import get_plugin_list
 
 def validate_chat_not_exist(handler):
     if handler.chat:
@@ -26,7 +27,28 @@ def validate_profile_exist(handler):
     except ChatUserProfile.DoesNotExist:
         raise exceptions.SocialCreditError('You are not enrolled in Social Credit system')
 
+def validate_param_count(handler, param_count):
+    # TODO maybe something smarter, than just wrapper functions w/ param_count? 
+    command_params = handler.message.text.split(' ')[1:]
+    if len(command_params) < param_count:
+        raise exceptions.SocialCreditError('Invalid command parameters. Use /social_credit_admin_help for details.')
+
+def validate_one_param(handler):
+    validate_param_count(handler, 1)
+
+def validate_two_params(handler):
+    validate_param_count(handler, 2)
+
+def validate_three_params(handler):
+    validate_param_count(handler, 3)
+
 def validate_chat_option(handler):
     command_params = handler.message.text.split(' ')[1:]
     if len(command_params) < 2:
         raise exceptions.SocialCreditError('Invalid command parameters. Use /social_credit_admin_help for details.')
+
+def validate_plugin_exists(handler):
+    plugin = handler.message.text.split(' ')[1]
+    plugin_list = list(get_plugin_list())
+    if plugin not in plugin_list:
+        raise exceptions.SocialCreditError('Unknown plugin.')

@@ -1,0 +1,6 @@
+jobs:
+  - name: run-periodic
+    command: python src/periodic.py 
+    schedule: "0 * * * *"
+    captureStdout: true
+    captureStderr: true

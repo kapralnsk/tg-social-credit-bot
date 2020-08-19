@@ -6,6 +6,7 @@ from translator import Translator
 from settings import MONGO_CONNECTION_STRING
 from logger import setup_logger
 import social_credit_routes # TODO refine routing module loading
+import plugins
 
 
 setup_logger()

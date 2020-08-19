@@ -58,3 +58,23 @@ def get_admin_help(message):
 @bot.message_handler(commands=['social_credit_set_chat_option'])
 def set_chat_option(message):
     handle(message, 'set_chat_option')
+
+@bot.message_handler(commands=['social_credit_plugins'])
+def get_plugins(message):
+    handle(message, 'get_plugins')
+
+@bot.message_handler(commands=['social_credit_enable_plugin'])
+def enable_plugin(message):
+    handle(message, 'enable_plugin')
+
+@bot.message_handler(commands=['social_credit_disable_plugin'])
+def disable_plugin(message):
+    handle(message, 'disable_plugin')
+
+@bot.message_handler(commands=['social_credit_plugin_help'])
+def get_plugin_help(message):
+    handle(message, 'get_plugin_help')
+
+@bot.message_handler(commands=['social_credit_set_plugin_option'])
+def set_plugin_option(message):
+    handle(message, 'set_plugin_option')

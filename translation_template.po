@@ -105,13 +105,19 @@ msgid ""
 "    * /social_credit_set_chat_option - set a value for a chat option. Takes "
 "2 params: option_name and option value, separated by spaces. Example: `/"
 "social_credit_set_chat_option starting_score 300`\n"
-"    \n"
+"\n"
 "Avaliable chat options:\n"
 "    * starting_score - starting score for anyone, who enrolls to Social "
 "Credit System. Default is {start_score}\n"
 "    * verbosity - bot verbosity level. Can be 0 - answer only to commands, 1 "
-"- allow periodical messages (unused for now), 2 - allow bot reactions. Default is {verbosity}\n"
-"    * language - bot messages language. Available languages are {languages}. Default is `{language}`, however this can fallback to `en`"
+"- allow periodical messages, 2 - allow bot reactions. Default is {verbosity}\n"
+"    * language - bot messages language. Available languages are {languages}. Default is `{language}`, however this can fallback to `en`\n"
+"\n"
+"For plugins, following management commands are available:\n"
+"    * /social_credit_plugins - show list of available plugins.\n"
+"    * /social_credit_enable_plugin - enables plugin. Takes 1 parameter `plugin_name`.\n"
+"    * /social_credit_disable_plugin - disables plugin. Takes 1 parameter `plugin_name`.\n"
+"    * /social_credit_plugin_help - shows help text for plugin. Takes 1 parameter `plugin_name`."
 msgstr ""
 
 #: src/bot.py:156
@@ -145,4 +151,28 @@ msgstr ""
 #: src/transactions.py:7
 #, python-brace-format
 msgid "Public shame! {username} Social Credit Score is now {score}"
+msgstr ""
+
+msgid "Unknown plugin."
+msgstr ""
+
+#, python-brace-format
+msgid "Available plugins: \n{plugins}"
+msgstr ""
+
+msgid "Plugin {plugin} is enabled."
+msgstr ""
+
+#, python-brace-format
+msgid "Plugin {plugin} is disabled."
+msgstr ""
+
+#, python-brace-format
+msgid "{plugin} plugin option {option} is set to {value}"
+msgstr ""
+
+msgid "Plugin is already disabled."
+msgstr ""
+
+msgid "Plugin is already enabled."
 msgstr ""
