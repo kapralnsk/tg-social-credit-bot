@@ -1,8 +1,13 @@
+from logging import getLogger
+
 from bot import bot
 from social_credit_handler import SocialCreditHandler
 from handler_validators import change_score_validator
 from exceptions import SocialCreditError
 from settings import DEFAULT_LANGUAGE
+
+
+logger = getLogger('social_credit')
 
 def handle(message, method_name, allow_no_chat=False):
     try:
@@ -18,7 +23,7 @@ def handle(message, method_name, allow_no_chat=False):
     except SocialCreditError as e:
         handler.send_system(str(e))
     except Exception as e:
-        # TODO add proper logging, and log en error here
+        logger.exception(str(e))
         bot.reply_to(message, "I've done goofed")
 
 
