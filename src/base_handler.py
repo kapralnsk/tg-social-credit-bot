@@ -76,7 +76,7 @@ class BaseHandler(object):
         language = self._get_chat_lang()
         chat_verbosity = self._get_chat_verbosity()
         periodical_verbosity = 1
-        if chat_verbosity >= periodical_verboisty:
+        if chat_verbosity >= periodical_verbosity:
             translated = self.bot.translator.translate(text, language)
             if str_format:
                 translated = translated.format(**str_format)
