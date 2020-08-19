@@ -189,3 +189,37 @@ msgstr "Плагин {plugin} включен"
 #, python-brace-format
 msgid "Plugin {plugin} is disabled."
 msgstr "Плагин {plugin} отключен."
+
+#, python-brace-format
+msgid "{plugin} plugin option {option} is set to {value}"
+msgstr "Опция {option} плагина {plugin} выставлена в {value}"
+
+msgid "Plugin is already disabled."
+msgstr "Плагин уже отключен."
+
+msgid "Plugin is already enabled."
+msgstr "Плагин уже включен."
+
+#, python-brace-format
+msgid "Automatically sends leaderboard (`/social_credit_chatinfo` command) every day, at {time} o'clock UTC."
+msgstr "Автоматически отправляет рейтинги чата (команду `/social_credit_chatinfo`) каждый день в {time} часов по UTC."
+
+msgid "Shows chat leaderboard, but in penises. Use /social_credit_chat_penises to see it."
+msgstr "Рейтинги чата, но в пиписьках. Используйте команду /social_credit_chat_penises чтобы на них посмотреть."
+
+#, python-brace-format
+msgid "Current Social Credit penises are:\n{profile_infos}"
+msgstr "Текущие пиписьки Социального Рейтинга чата:\n{profile_infos}"
+
+#, python-brace-format
+msgid "Implements daily transaction limit: any profile can rank only limited number of messages a day.\n"
+"Default limit is {limit}, resets every day at {time} o'clock UTC.\n"
+"Available options:\n"
+"* limit - changes transaction limit for everyone in the chat. Applies, when limit is reset."
+msgstr "Реализует дневные ограничения на оценки: каждый пользователь может оценить только ограниченное количество сообщений за день.\n"
+"Ограничение по умолчанию: {limit}, сбрасывается каждый день в {time} по UTC.\n"
+"Доступные опции:\n"
+"* limit - меняет количество оценок в день для всех пользователей чата. Применяется во время ежедневного сброса."
+
+msgid "Transaction limit exceeded."
+msgstr "Превышено количество возможных оценок."

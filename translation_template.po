@@ -176,3 +176,24 @@ msgstr ""
 
 msgid "Plugin is already enabled."
 msgstr ""
+
+#, python-brace-format
+msgid "Automatically sends leaderboard (`/social_credit_chatinfo` command) every day, at {time} o'clock UTC."
+msgstr ""
+
+msgid "Shows chat leaderboard, but in penises. Use /social_credit_chat_penises to see it."
+msgstr ""
+
+#, python-brace-format
+msgid "Current Social Credit penises are:\n{profile_infos}"
+msgstr ""
+
+#, python-brace-format
+msgid "Implements daily transaction limit: any profile can rank only limited number of messages a day.\n"
+"Default limit is {limit}, resets every day at {time} o'clock UTC.\n"
+"Available options:\n"
+"* limit - changes transaction limit for everyone in the chat. Applies, when limit is reset."
+msgstr ""
+
+msgid "Transaction limit exceeded."
+msgstr ""
