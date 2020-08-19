@@ -17,6 +17,7 @@ RUN pip install \
 
 COPY src src/
 COPY locale locale/
+COPY crontab.yaml crontab.yaml
 
 USER social_credit
 
