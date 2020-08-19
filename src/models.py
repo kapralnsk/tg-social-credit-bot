@@ -12,7 +12,7 @@ CHAT_VERBOSITIES = (
 )
 
 class PluginOptions(mongoengine.EmbeddedDocument):
-    plugin_name = mongoengine.StringField(unique=True)
+    plugin_name = mongoengine.StringField()
 
     meta = {'allow_inheritance': True}
 
@@ -91,6 +91,7 @@ class ProfileTransaction(mongoengine.Document):
     score_delta = mongoengine.IntField(required=True)
     issuer = mongoengine.ReferenceField(ChatUserProfile, required=True)
     message = mongoengine.DictField()
+
 
 class ChatPeriodicTask(mongoengine.Document):
     DEFAULT_DATE = datetime.date(year=1970, month=1, day=1)
