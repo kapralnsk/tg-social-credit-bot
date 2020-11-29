@@ -78,3 +78,7 @@ def get_plugin_help(message):
 @bot.message_handler(commands=['social_credit_set_plugin_option'])
 def set_plugin_option(message):
     handle(message, 'set_plugin_option')
+
+@bot.message_handler(commands=['social_credit_get_top_raters'])
+def get_top_raters(message):
+    handle(message, 'get_top_raters')

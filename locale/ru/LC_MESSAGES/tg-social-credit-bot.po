@@ -88,6 +88,7 @@ msgid ""
 "/social_credit_myscore shows your current Social Credit score, while /"
 "social_credit_chatinfo command show score info on everyone enrolled into "
 "system in this chat.\n"
+"/social_credit_get_top_raters shows top 10 raters in your chat.\n"
 "Admins can get help on admin commands using /social_credit_admin_help.\n"
 "/social_credit_help displays this message again."
 msgstr ""
@@ -97,6 +98,7 @@ msgstr ""
 "Затем, участники чата могут включиться в Систему Социального Рейтинга с помощью команды /social_credit_enroll.\n"
 "При включении в Систему Социального рейтинга, каждому участнику начисляется {start_score} Социального Рейтинга.\n"
 "Команда /social_credit_myscore показывает ваш текущий Социальный Рейтинг, а команда /social_credit_chatinfo показывает Социальный Рейтинг всех участников чата, включенных в Систему Социального Рейтинга.\n"
+"/social_credit_get_top_raters показывает топ 10 оценивающих в вашем чате.\n"
 "Администраторы могу посмотреть справку по командам администрирования с помощью команды /social_credit_admin_help.\n"
 "/social_credit_help снова покажет это сообщение."
 
@@ -223,3 +225,6 @@ msgstr "Реализует дневные ограничения на оценк
 
 msgid "Transaction limit exceeded."
 msgstr "Превышено количество возможных оценок."
+
+msgid "Current Social Credit top raters {top_count} are:\n{top}"
+msgstr "Топ {top_count} оценивающих:\n{top}"

@@ -100,6 +100,7 @@ Before use, Social Credit System must be enabled for your chat by a Chat Admin, 
 Then, chat members can enroll to Social Credit System using /social_credit_enroll command.
 After enrolling, each member has a {start_score} Starting Credit Score (This can be changed by an admin).
 /social_credit_myscore shows your current Social Credit score, while /social_credit_chatinfo command show score info on everyone enrolled into system in this chat.
+/social_credit_get_top_raters shows top 10 raters in your chat.
 Admins can get help on admin commands using /social_credit_admin_help.
 /social_credit_help displays this message again.''',
             str_format={'start_score': start_score},
@@ -218,4 +219,28 @@ For plugins, following management commands are available:
         self.send_system(
             text,
             str_format=str_format,
+        )
+
+    def get_top_raters(self):
+        top_count = 10
+        profiles = self.chat.get_profiles()
+        pipeline_profiles = list(profiles.values_list('id'))
+        pipeline = [
+            {"$match": {"issuer" : {"$in": pipeline_profiles}}},
+            {"$sortByCount": "$issuer"},
+        ]
+        cursor = ProfileTransaction.objects.aggregate(pipeline)
+        top = []
+        i = 0
+        while i != top_count and cursor.alive:
+            rater = cursor.next()
+            profile = profiles.get(id=rater['_id'])
+            top.append(
+                f'@{profile.tg_username}: {rater["count"]}' if profile.tg_username
+                else f'{profile.tg_full_name}: {rater["count"]}'
+            )
+            i += 1
+        self.send_system(
+            'Current Social Credit top raters {top_count} are:\n{top}',
+            str_format={'top_count': top_count, 'top': '\n'.join(top)},
         )

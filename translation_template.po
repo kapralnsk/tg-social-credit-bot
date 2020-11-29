@@ -197,3 +197,6 @@ msgstr ""
 
 msgid "Transaction limit exceeded."
 msgstr ""
+
+msgid "Current Social Credit top raters {top_count} are:\n{top}"
+msgstr ""
